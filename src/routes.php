@@ -11,3 +11,4 @@
 |
 */
 
+Route::get('/ipn', 'ZaLaravel\LaravelRobokassa\Controllers\IpnRobokassaController@getResult');

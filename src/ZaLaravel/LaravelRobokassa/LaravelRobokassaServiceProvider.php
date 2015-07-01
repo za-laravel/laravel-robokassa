@@ -20,6 +20,9 @@ class LaravelRobokassaServiceProvider extends ServiceProvider {
             __DIR__.'/../../database/migrations/' => base_path('/database/migrations')
         ], 'migrations');
 
+        // Routes
+        include __DIR__.'/../../routes.php';
+
     }
 
     /**
