@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Models\User;
-
 /**
  * Class IpnRobokassaController
  * @package ZaLaravel\LaravelRobokassa\Controllers
  */
 class IpnRobokassaController extends Controller{
+
 
     public function getResult(Request $request)
     {
