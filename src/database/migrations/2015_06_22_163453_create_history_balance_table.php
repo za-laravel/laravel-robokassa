@@ -13,14 +13,17 @@ class CreateHistoryBalanceTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('history_balance', function (Blueprint $table)
+
+        Schema::create('history_balance', function (Blueprint $table)
         {
             $table->increments('id');
+            $table->integer('uid');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('description');
             $table->integer('balance')->unsigned();
             $table->string('operation');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
 	}

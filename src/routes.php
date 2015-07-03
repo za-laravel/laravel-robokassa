@@ -12,3 +12,5 @@
 */
 
 Route::get('/ipn', 'ZaLaravel\LaravelRobokassa\Controllers\IpnRobokassaController@getResult');
+
+Route::post('/createPayment', 'ZaLaravel\LaravelRobokassa\Controllers\PaymentController@createPayment');
