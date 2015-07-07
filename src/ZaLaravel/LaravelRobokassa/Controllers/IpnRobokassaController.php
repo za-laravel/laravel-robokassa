@@ -29,7 +29,7 @@ class IpnRobokassaController extends Controller{
                     $payment = Payment::where('uid', '=', $inv_id)->first();
                     $payment->status = 1;
                     $payment->update();
-                    $addBalanceToUser = $user->user_id;
+                    $addBalanceToUser = User::find($user->user_id);
                     $addBalanceToUser->balance += $out_sum;
                     $addBalanceToUser->update();
                     DB::connection()->getPdo()->commit();

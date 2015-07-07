@@ -17,6 +17,7 @@ class PaymentController extends Controller {
 
 	public function createPayment(Request $request)
     {
+        \Auth::user();
         $user = $request->user()->id;
         $sum = $request->get('OutSum');
         $mrh_login = config('roboconfig.login');
