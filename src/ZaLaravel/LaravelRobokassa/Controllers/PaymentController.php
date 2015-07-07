@@ -19,8 +19,8 @@ class PaymentController extends Controller {
     {
         $user = $request->user()->id;
         $sum = $request->get('OutSum');
-        $mrh_login = config('roboconfig.testLogin');
-        $mrh_pass1 = config('roboconfig.testPassword1');
+        $mrh_login = config('roboconfig.login');
+        $mrh_pass1 = config('roboconfig.password1');
         $inv_id = mt_rand();
         $inv_desc = 'Пополнение баланса';
         $crc = md5($mrh_login.":".$sum.":".$inv_id.":".$mrh_pass1);
@@ -44,6 +44,6 @@ class PaymentController extends Controller {
         }
        /* return redirect()->action('ZaLaravel\LaravelRobokassa\Controllers\IpnRobokassaController@getResult',
             array('OutSum' => $sum, 'InvId' => $inv_id, 'SignatureValue' => $crc));*/
-       header("Location: http://test.robokassa.ru/Index.aspx?MrchLogin=$mrh_login&OutSum=$sum&InvId=$inv_id&Desc=$inv_desc&SignatureValue=$crc");
+       header("Location: https://auth.robokassa.ru/Merchant/Index.aspx?MrchLogin=$mrh_login&OutSum=$sum&InvId=$inv_id&Desc=$inv_desc&SignatureValue=$crc");
     }
 }
