@@ -20,7 +20,7 @@ class IpnRobokassaController extends Controller{
         $inv_id = $request->get('InvId');
         $user = Payment::select('user_id')->where('uid', '=', $inv_id)->first();
         $checksum = $request->get('SignatureValue');
-        $password2 = config('roboconfig.password2');
+        $password2 = config('roboconfig.testPassword2');
 
         if (strtolower($checksum) == strtolower(md5($out_sum.":".$inv_id.":".$password2))) {
             if (Payment::where('uid', '=', $inv_id) && Payment::where('balance', '=', $out_sum)) {
