@@ -28,7 +28,7 @@ class PaymentController extends Controller {
 
         if($sum != 0) {
             try {
-                DB::connection()->getPdo()->beginTransaction();
+                DB::beginTransaction();
                     $payment = new Payment();
                     $payment->uid = $inv_id;
                     $payment->user_id = $user;
@@ -36,7 +36,7 @@ class PaymentController extends Controller {
                     $payment->description = $inv_desc;
                     $payment->operation = '+';
                     $payment->save();
-                DB::connection()->getPdo()->commit();
+                DB::commit();
             } catch (\PDOException $e){
 
                 print $e->getMessage();

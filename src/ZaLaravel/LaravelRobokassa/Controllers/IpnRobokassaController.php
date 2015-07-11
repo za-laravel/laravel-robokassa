@@ -25,14 +25,14 @@ class IpnRobokassaController extends Controller{
         if (strtolower($checksum) == strtolower(md5($out_sum.":".$inv_id.":".$password2))) {
             if (Payment::where('uid', '=', $inv_id) && Payment::where('balance', '=', $out_sum)) {
                 try {
-                    DB::connection()->getPdo()->beginTransaction();
-                    $payment = Payment::where('uid', '=', $inv_id)->first();
-                    $payment->status = 1;
-                    //$payment->update();
-                    $addBalanceToUser = User::find($user->user_id);
-                    $addBalanceToUser->balance += $out_sum;
-                   // $addBalanceToUser->update();
-                    DB::connection()->getPdo()->commit();
+                    DB::beginTransaction();
+                        $payment = Payment::where('uid', '=', $inv_id)->first();
+                        $payment->status = 1;
+                        $payment->update();
+                        $addBalanceToUser = User::find($user->user_id);
+                        $addBalanceToUser->balance += $out_sum;
+                        $addBalanceToUser->update();
+                    DB::commit();
                 } catch (\PDOException $e) {
 
                     \Session::flash('message', "$e->getMessage()");
