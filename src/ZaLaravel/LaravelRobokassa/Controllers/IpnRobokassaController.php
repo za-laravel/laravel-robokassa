@@ -27,11 +27,13 @@ class IpnRobokassaController extends Controller{
                 try {
                     DB::beginTransaction();
                         $payment = Payment::where('uid', '=', $inv_id)->first();
+                    if($payment->status == 0) {
                         $payment->status = 1;
                         $payment->update();
                         $addBalanceToUser = User::find($user->user_id);
                         $addBalanceToUser->balance += $out_sum;
                         $addBalanceToUser->update();
+                    }
                     DB::commit();
                 } catch (\PDOException $e) {
 
